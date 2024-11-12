@@ -5,6 +5,10 @@ screen = pygame.display.set_mode((400, 500))
 # crete surface
 test_surface = pygame.Surface((100, 200))
 #test_surface.fill(pygame.Color('blue'))
+test_rect_from_test_surface = test_surface.get_rect(center = (200,250)) # (x,y)
+# create surface cannot refix position - rect(rectangle)
+# pygame.Rect(x,y,w,h)
+test_rect = pygame.Rect(100,200,100,200)
 test_surface.fill((0,0,255)) # blue color
 while True:
     for event in pygame.event.get() :
@@ -12,9 +16,8 @@ while True:
             pygame.quit()
             sys.exit()
     screen.fill((175,215,70))
-    # hanve two way to fill color argument 
-     # 1. RGB tuple (red, green, blue )
-     # 2. color name
-    screen.blit(test_surface, (200, 250))
+    pygame.draw.rect(screen, pygame.Color('red'), test_rect)
+
+    screen.blit(test_surface, test_rect_from_test_surface)
     pygame.display.update() 
 
