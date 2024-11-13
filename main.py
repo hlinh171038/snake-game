@@ -56,6 +56,15 @@ while True:
             sys.exit()
         if event.type == SCREEN_UPDATE:
             snake.move_snake()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP: # up
+                snake.direction = Vector2(0, -1)
+            if event.key == pygame.K_DOWN: # down
+                snake.direction = Vector2(0, 1)
+            if event.key == pygame.K_RIGHT: # right
+                snake.direction = Vector2(1, 0)
+            if event.key == pygame.K_LEFT: # left
+                snake.direction = Vector2(-1,0)
     screen.fill((175,215,70))
     fruit.draw_fruit()
     snake.draw_snake()
