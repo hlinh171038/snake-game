@@ -1,23 +1,33 @@
 import pygame, sys
+from pygame.math import Vector2
 
-pygame.init() # nethod to start the game
-screen = pygame.display.set_mode((400, 500))
-# crete surface
-test_surface = pygame.Surface((100, 200))
-#test_surface.fill(pygame.Color('blue'))
-test_rect_from_test_surface = test_surface.get_rect(topright = (200,250)) # (x,y)
-# create surface cannot refix position - rect(rectangle)
-# pygame.Rect(x,y,w,h)
-test_rect = pygame.Rect(100,200,100,200)
-test_surface.fill((0,0,255)) # blue color
+
+class FRUIT:
+    def __init__(self):
+        # create x,y vector (best way to control object)
+        self.x = 5
+        self.y = 4
+        self.pos = Vector2(self.x, self.y)
+    # draw fruit
+    def draw_fruit(self) :
+        fruit_rect = pygame.Rect(self.pos.x,self.pos.y,cell_size,cell_size)
+        #draw rectangle
+        pygame.draw.rect(screen,(126, 166,114),fruit_rect)
+
+pygame.init() # method to start the game
+#change size (w,h) 
+cell_size = 40
+cell_number = 20
+screen = pygame.display.set_mode((cell_size * cell_number, cell_size * cell_number))
+
+fruit = FRUIT()
+
 while True:
     for event in pygame.event.get() :
         if event == pygame.QUIT:
             pygame.quit()
             sys.exit()
     screen.fill((175,215,70))
-    pygame.draw.rect(screen, pygame.Color('red'), test_rect)
-
-    screen.blit(test_surface, test_rect_from_test_surface) # pint(x,y) in the topright
+    fruit.draw_fruit()
     pygame.display.update() 
 
