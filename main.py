@@ -4,12 +4,25 @@ from pygame.math import Vector2
 class SNAKE:
     def __init__(self):
         self.body = [Vector2(5,10), Vector2(6,10), Vector2(7,10)]
+        self.direction = Vector2(1,0) # right
     def draw_snake(self):
         for block in self.body:
             x_pos = int(block.x * cell_size)
             y_pos = int(block.y * cell_size)
             block_rect = pygame.Rect(x_pos, y_pos, cell_size, cell_size)
-            pygame.draw.rect(screen, (183,191, 122), block_rect)
+            pygame.draw.rect(screen, (183,121, 122), block_rect)
+    # 1. move snake:
+    #  1. we need some user input to move snake
+    #  2. we need the timer ( we noly want to move this snake whenever this timer trigger)
+    def move_snake(self):
+        # coppy list except last element
+        body_copy = self.body[:-1]
+        # insert new element + direction to the first of the list
+        body_copy.insert(0,body_copy[0]+ self.direction)
+        # return list to body again
+        self.body = body_copy[:]
+        # ? i dont want exercute it all the time, i want it exercute in certain interval in my case 150 ml/s
+        # --> create timer ( timer un pygame work in event loop)
 
 
 class FRUIT:
@@ -32,12 +45,17 @@ screen = pygame.display.set_mode((cell_size * cell_number, cell_size * cell_numb
 
 fruit = FRUIT()
 snake = SNAKE()
+ # 2. timmer
+SCREEN_UPDATE = pygame.USEREVENT # customer event you csnt not trigger
+pygame.time.set_timer(SCREEN_UPDATE, 150)
 
 while True:
     for event in pygame.event.get() :
         if event == pygame.QUIT:
             pygame.quit()
             sys.exit()
+        if event.type == SCREEN_UPDATE:
+            snake.move_snake()
     screen.fill((175,215,70))
     fruit.draw_fruit()
     snake.draw_snake()
