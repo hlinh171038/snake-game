@@ -46,7 +46,8 @@ class FRUIT:
     def draw_fruit(self) :
         fruit_rect = pygame.Rect(int(self.pos.x * cell_size),int(self.pos.y * cell_size),cell_size,cell_size)
         #draw rectangle
-        pygame.draw.rect(screen,(126, 166,114),fruit_rect)
+        #pygame.draw.rect(screen,(126, 166,114),fruit_rect)
+        screen.blit(apple, fruit_rect)
     def randomize(self) :
           # create x,y vector (best way to control object)
         self.x = random.randint(0, cell_number -1)
@@ -94,6 +95,7 @@ pygame.init() # method to start the game
 cell_size = 40
 cell_number = 20
 screen = pygame.display.set_mode((cell_size * cell_number, cell_size * cell_number))
+apple = pygame.image.load('Assets/apple.jpg').convert_alpha() # import img and convert alpha to word in pygame
 
  # 2. timmer
 SCREEN_UPDATE = pygame.USEREVENT # customer event you csnt not trigger
