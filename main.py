@@ -39,9 +39,18 @@ class SNAKE:
                 # 3. snake head direction is not updating
             elif index == len(self.body) -1:
                 screen.blit(self.tail, block_rect)
-
             else:
-                pygame.draw.rect(screen,(150,100,100), block_rect)
+                
+                # previous_block = body[current index + 1]--> previous index block(6,10) - block(5,10) --> Vector2(1,0)
+                previous_block = self.body[index +1] - block
+                print(previous_block)
+                next_block = self.body[index -1] - block
+                if previous_block.x - next_block.x == 0: # check if both previous_block and next_block the same x
+                    screen.blit(self.body_vertical, block_rect)
+                elif previous_block.y - next_block.y == 0: # check if both previous_block and next_block the same x
+                    screen.blit(self.body_horizontal, block_rect)
+            # else:
+            #     pygame.draw.rect(screen,(150,100,100), block_rect)
 
     def update_head_graphics(self):
         head_relation = self.body[1] - self.body[0]
