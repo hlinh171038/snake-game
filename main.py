@@ -128,7 +128,7 @@ class MAIN :
         self.draw_grass()
         self.fruit.draw_fruit()
         self.snake.draw_snake()
-
+        self.draw_score()
     # check collision
     def check_collision(self):
         if self.fruit.pos == self.snake.body[0] : # check if fruit position have same block of head of our snake
@@ -167,7 +167,15 @@ class MAIN :
                     if col % 2 != 0:
                         grass_rect = pygame.Rect(col*cell_size, row*cell_size, cell_size, cell_size)
                         pygame.draw.rect(screen, grass_color, grass_rect)
+    # draw score
+    def draw_score(self) :
+        score_text = str(len(self.snake.body) - 3) # - (start index 0, head, tail)
+        score_surface = game_font.render(score_text, True, (56,74,12))
+        score_rect = score_surface.get_rect(center=(100, 50))
+        apple_rect = apple.get_rect(midright = (score_rect.left, score_rect.centery))
 
+        screen.blit(score_surface,score_rect)
+        screen.blit(apple, apple_rect)
 
 pygame.init() # method to start the game
 #change size (w,h) 
@@ -175,7 +183,7 @@ cell_size = 40
 cell_number = 20
 screen = pygame.display.set_mode((cell_size * cell_number, cell_size * cell_number))
 apple = pygame.image.load('Graphics/apple.png').convert_alpha() # import img and convert alpha to word in pygame
-game_font = pygame.font.Font('Font/PoetsonOne-Regular.ttf', 25)
+game_font = pygame.font.Font('Font/PoetsenOne-Regular.ttf', 25)
  # 2. timmer
 SCREEN_UPDATE = pygame.USEREVENT # customer event you csnt not trigger
 pygame.time.set_timer(SCREEN_UPDATE, 150)
@@ -211,4 +219,4 @@ while True:
 # 1. create font object (done)
 # 2. create text with the font object
 # 3. blit the text on the display surface
-
+# 4. draw apple midright of text
