@@ -207,3 +207,8 @@ while True:
     main_game.draw_element()
     pygame.display.update() 
 
+#     display this score with text
+# 1. create font object
+# 2. create text with the font object
+# 3. blit the text on the display surface
+
