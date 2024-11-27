@@ -156,11 +156,12 @@ class MAIN :
     def draw_grass(self):
         # grass color
         grass_color = (167,209,61)
-       
-        for col in range(cell_number):
-            if col % 2 == 0:
-                grass_rect = pygame.Rect(col* cell_size,0,cell_size,cell_size)
-                pygame.draw.rect(screen, grass_color, grass_rect)
+        for row in range(cell_number):
+
+            for col in range(cell_number):
+                if col % 2 == 0:
+                    grass_rect = pygame.Rect(col* cell_size,row*cell_size,cell_size,cell_size)
+                    pygame.draw.rect(screen, grass_color, grass_rect)
         
 
 
