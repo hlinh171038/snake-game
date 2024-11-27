@@ -181,6 +181,8 @@ class MAIN :
         screen.blit(score_surface,score_rect)
         screen.blit(apple, apple_rect)
 
+
+pygame.mixer.pre_init(44100, -16,2,512) # play immidetely
 pygame.init() # method to start the game
 #change size (w,h) 
 cell_size = 40
@@ -222,3 +224,4 @@ while True:
 # add sound to game
 # when snake collide with fruit
 # 1. import sound (avaiable)
+# sound delay --> i want sound play immidietely
