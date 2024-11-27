@@ -24,6 +24,8 @@ class SNAKE:
         self.body_tl = pygame.image.load('Graphics/body_tl.png').convert_alpha()
         self.body_br = pygame.image.load('Graphics/body_br.png').convert_alpha()
         self.body_bl = pygame.image.load('Graphics/body_bl.png').convert_alpha()
+        # import sound
+        self.crunch_sound = pygame.mixer.Sound('Sound/crunch.wav')
 
     def draw_snake(self):
         self.update_head_graphics()
@@ -139,6 +141,8 @@ class MAIN :
                 # print('snake head:', self.snake.body[0])
             # add another block to the snake
             self.snake.add_block()
+            # add crunch sound
+            self.snake.crunch_sound.play()
 
     def check_fail(self) :
         # check if snake is outside of the screen]
@@ -215,8 +219,6 @@ while True:
     main_game.draw_element()
     pygame.display.update() 
 
-#     display this score with text
-# 1. create font object (done)
-# 2. create text with the font object
-# 3. blit the text on the display surface
-# 4. draw apple midright of text
+# add sound to game
+# when snake collide with fruit
+# 1. import sound (avaiable)
