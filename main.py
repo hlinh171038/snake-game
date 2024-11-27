@@ -144,6 +144,10 @@ class MAIN :
             # add crunch sound
             self.snake.crunch_sound.play()
 
+        for block in self.sanke.body[1:] : # - 0 (because this is head)
+            if block == self.fruit.pos:
+                self.fruit.randomize()
+
     def check_fail(self) :
         # check if snake is outside of the screen]
         if not 0 <= self.snake.body[0].x < cell_number or not 0 <= self.snake.body[0].y < cell_number: # check head of snake between x,y
@@ -221,7 +225,4 @@ while True:
     main_game.draw_element()
     pygame.display.update() 
 
-# add sound to game
-# when snake collide with fruit
-# 1. import sound (avaiable)
-# sound delay --> i want sound play immidietely
+# check if fruit lie the same position with snake
