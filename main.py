@@ -103,6 +103,8 @@ class SNAKE:
 
     def add_block(self):
         self.newBlock = True
+    def reset(self):
+       self.body = [Vector2(5,10), Vector2(4,10), Vector2(3,10)] 
 
 class FRUIT:
     def __init__(self):
@@ -144,7 +146,7 @@ class MAIN :
             # add crunch sound
             self.snake.crunch_sound.play()
 
-        for block in self.sanke.body[1:] : # - 0 (because this is head)
+        for block in self.snake.body[1:] : # - 0 (because this is head)
             if block == self.fruit.pos:
                 self.fruit.randomize()
 
@@ -158,8 +160,7 @@ class MAIN :
                 self.game_over()
     
     def game_over(self):
-        pygame.quit()
-        sys.exit()
+       self.snake.reset()
 
     def draw_grass(self):
         # grass color
@@ -185,7 +186,7 @@ class MAIN :
         screen.blit(score_surface,score_rect)
         screen.blit(apple, apple_rect)
 
-
+    
 pygame.mixer.pre_init(44100, -16,2,512) # play immidetely
 pygame.init() # method to start the game
 #change size (w,h) 
