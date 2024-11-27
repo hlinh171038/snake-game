@@ -175,7 +175,7 @@ cell_size = 40
 cell_number = 20
 screen = pygame.display.set_mode((cell_size * cell_number, cell_size * cell_number))
 apple = pygame.image.load('Graphics/apple.png').convert_alpha() # import img and convert alpha to word in pygame
-
+game_font = pygame.font.Font('Font/PoetsonOne-Regular.ttf', 25)
  # 2. timmer
 SCREEN_UPDATE = pygame.USEREVENT # customer event you csnt not trigger
 pygame.time.set_timer(SCREEN_UPDATE, 150)
@@ -208,7 +208,7 @@ while True:
     pygame.display.update() 
 
 #     display this score with text
-# 1. create font object
+# 1. create font object (done)
 # 2. create text with the font object
 # 3. blit the text on the display surface
 
